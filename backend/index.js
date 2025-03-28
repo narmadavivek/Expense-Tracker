@@ -10,13 +10,20 @@ const ensureAuthenticated = require('./Middlewares/Auth');
 require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
+const allowedOrigins = [
+    "http://localhost:3000", // For local development
+    "https://expense-tracker-frontend-o3zn.onrender.com" // Your production frontend
+  ];
 
 app.get('/ping', (req, res) => {
     res.send('PONG');
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 app.use('/expenses', ensureAuthenticated, ExpenseRouter)
