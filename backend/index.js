@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouter');
-const ProductRouter = require('./Routes/ProductRouter');
+const ProductRouter = require('./Routes/productRouter');
 const ExpenseRouter = require('./Routes/ExpenseRouter');
 const ensureAuthenticated = require('./Middlewares/Auth');
 
